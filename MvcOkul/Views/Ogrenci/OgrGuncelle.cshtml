@@ -1,0 +1,44 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Ogrenciler
+@{
+    ViewBag.Title = "OgrGuncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Öğrenci Güncelleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("OgrGuncelle", "Ogrenci", FormMethod.Post))
+ {
+    <div class="form-group">
+        <div style="margin-top:5px">
+            <label>Öğrenci Id</label>
+            @Html.TextBoxFor(m => m.OgrId, new { @class = "form-control" ,@readonly="readonly"})
+        </div>
+        <div style="margin-top:5px;">
+            <label>Öğrenci Ad</label>
+            @Html.TextBoxFor(m => m.OgrAd, new { @class = "form-control" , @required = "required" })
+        </div>
+        <div style="margin-top:5px">
+            <label>Öğrenci Soyad</label>
+            @Html.TextBoxFor(m => m.OgrSoyad, new { @class = "form-control" , @required = "required" })
+        </div>
+        <div style="margin-top:5px">
+            <label>Öğrenci Cinsiyet</label>
+            @*@Html.TextBoxFor(m => m.OgrCinsiyet, new { @class = "form-control" })*@
+            @Html.DropDownListFor(m=>m.OgrCinsiyet,
+       new[]
+       {
+           new SelectListItem() {Value="Erkek",Text="Erkek"},
+            new SelectListItem() {Value="Kız",Text="Kız"}
+       }, "Cinsiyet Seçiniz...", new { @class = "form-control", @required = "required" })
+        </div>
+        <div style="margin-top:5px">
+            <label>Öğrenci Kulüp</label>
+            @*@Html.TextBoxFor(m => m.OgrKulup, new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.OgrKulup, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control", @required = "required" })
+        </div>
+        <div style="margin-top:10px;">
+            <button class="btn btn-primary">Öğrenci Güncelle</button>
+        </div>
+    </div>
+ }
+

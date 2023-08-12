@@ -1,0 +1,19 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Kulüpler
+@{
+    ViewBag.Title = "KulupEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h3>Kulüp Ekleme Sayfası</h3>
+<br />
+<form method="post" class="form-group">
+    <div>
+        <label>Kulüp Adı</label>
+        <input  type="text" name="KlpAd" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız..."/>
+        @Html.ValidationMessageFor(x => x.KlpAd, "", new {@style="color:blue;"})
+    </div>
+    <div style="margin-top:5px;">
+        <button class="btn btn-primary">Kulüp Ekle</button>
+    </div>
+</form>
+

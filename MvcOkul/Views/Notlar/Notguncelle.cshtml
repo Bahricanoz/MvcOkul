@@ -1,0 +1,52 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Notlar
+@{
+    ViewBag.Title = "Notguncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Not Güncellem Sayfası</h2>
+<br />
+@using (Html.BeginForm("Notguncelle", "Notlar", FormMethod.Post))
+{
+    <div class="form-group">
+        <div>
+            <label>Not Id</label>
+            @Html.TextBoxFor(m => m.NotId, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Öğrenci Adı</label>
+            @Html.TextBoxFor(m => m.Tbl_Ogrenciler.OgrAd, new { @class = "form-control", @readonly = "readonly" , @required = "required" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Öğrenci Soyadı</label>
+            @Html.TextBoxFor(m => m.Tbl_Ogrenciler.OgrSoyad, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Ders Adı</label>
+            @Html.TextBoxFor(m => m.Tbl_Dersler.DersAd, new { @class = "form-control", @readonly = "readonly", @required = "required" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Sınav 1</label>
+            @Html.TextBoxFor(m => m.Sınav1, new { @class = "form-control",@required="required" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Sınav 2</label>
+            @Html.TextBoxFor(m => m.Sınav2, new { @class = "form-control", @required = "required" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Sınav 3</label>
+            @Html.TextBoxFor(m => m.Sınav3, new { @class = "form-control", @required = "required" })
+        </div>
+        <div style="margin-top:5px;">
+            <label>Proje</label>
+            @Html.TextBoxFor(m => m.Proje, new { @class = "form-control" })
+        </div>
+        <div>
+            <div style="margin-top:10px;">
+                <button class="btn btn-primary" name="islem" type="submit" value="Notgnclle">Not Güncelle</button>
+            </div>
+        </div>
+    </div>
+ 
+}
+

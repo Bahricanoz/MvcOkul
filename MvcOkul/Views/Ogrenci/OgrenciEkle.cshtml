@@ -1,0 +1,36 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Ogrenciler
+@{
+    ViewBag.Title = "OgrenciEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Öğrenci Ekleme Syafası</h2>
+<br />
+<form class="form-group" method="post">
+    <div>
+        <label>Öğrenci Ad</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Doldurunuz..." name="OgrAd" required />
+    </div>
+    <div style="margin-top:10px;">
+        <label>Öğrenci Soyad</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Doldurunuz..." name="OgrSoyad" required />
+    </div>
+    <div style="margin-top:10px;">
+        <label>Öğrenci Cinsiyet</label>
+        @Html.DropDownList("OgrCinsiyet",
+        new[]
+        {
+            new SelectListItem() {Value="Erkek",Text="Erkek"},
+             new SelectListItem() {Value="Kız",Text="Kız"}
+        },"Cinsiyet Seçiniz...",new { @class="form-control", @required = "required" })
+    </div>
+    <div style="margin-top:10px;">
+        <label>Öğrenci Kulüp</label>
+        @*<input type="text" class="form-control" placeholder="Lütfen Bu Alanı Doldurunuz..." name="OgrKulup" />*@
+        @Html.DropDownListFor(m=>m.Tbl_Kulüpler.KulupId,(List<SelectListItem>)ViewBag.dgr,new {@class="form-control", @required = "required" })
+    </div>
+    <div style="margin-top:10px;">
+        <button class="btn btn-primary">Öğrenci Ekle</button>
+    </div>
+</form>
+

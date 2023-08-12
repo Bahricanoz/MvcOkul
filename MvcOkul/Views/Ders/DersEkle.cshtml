@@ -1,0 +1,20 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Dersler
+@{
+    ViewBag.Title = "DersEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h3>Ders Ekleme Sayfası</h3>
+<br />
+<form class="form-group" method="post">
+    <div>
+        <label>Ders Adı</label>
+        <input type="text" class="form-control" name="DersAd" placeholder="Lütfen Bu Alanı Doldurunuz..."  />
+        @Html.ValidationMessageFor(x => x.DersAd, "", new { @style = "color:blue;" })
+    </div>
+    <div style="margin-top:10px;">
+        <button class="btn btn-primary">Ders Ekle </button>
+    </div>
+   
+</form>
+

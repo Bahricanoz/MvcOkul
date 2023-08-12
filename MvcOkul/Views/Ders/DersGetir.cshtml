@@ -1,0 +1,24 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Dersler
+@{
+    ViewBag.Title = "DersGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Ders Güncelleme Sayafası</h2>
+@using (Html.BeginForm("Guncelle", "Ders", FormMethod.Post)) 
+{
+    <div class="form-group">
+        <div >
+            <label>Ders Id</label>
+            @Html.TextBoxFor(m=>m.DersId,new {@class="form-control",@readonly="readonly"})
+        </div>
+        <div style="margin-top:5px">
+            <label>Ders Ad</label>
+            @Html.TextBoxFor(m => m.DersAd, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.DersAd, "", new { @style = "color:blue;" })
+        </div>
+        <div style="margin-top:10px">
+            <button class="btn btn-primary">Ders Güncelle</button>
+        </div>
+    </div>
+}

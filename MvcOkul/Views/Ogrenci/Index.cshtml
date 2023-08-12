@@ -1,0 +1,54 @@
+﻿@using MvcOkul.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Ogrenciler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Öğrenci İşlemleri</h2>
+<div style="margin:10px;">
+    <a href="/Ogrenci/OgrenciEkle/" class="btn btn-info">Öğrenci Ekle</a>
+</div>
+<table class="table table-bordered" id="tbl1">
+    <tr>
+        <th>Öğrenci Numara</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Cinsiyet</th>
+        <th>Öğrenci Kulüp</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @{ string durum = "";}
+        @foreach (var x in Model)
+        {
+            if (x.OgrDurum == true)
+            {
+                durum = "Aktif";
+            }
+            if (x.OgrDurum == false)
+            {
+                durum = "Pasif";
+            }
+            <tr>
+                <td>@x.OgrId</td>
+                <td>@x.OgrAd</td>
+                <td>@x.OgrSoyad</td>
+                <td>@x.OgrCinsiyet</td>
+                <td>@x.Tbl_Kulüpler.KlpAd</td>
+                <td>@durum</td>
+                <td><a href="/Ogrenci/Aktifyap/@x.OgrId" class="btn btn-outline-success">Aktif Yap</a> <a href="/Ogrenci/OgrSil/@x.OgrId" class="btn btn-outline-danger">Pasif Yap</a></td>
+                <td><a href="/Ogrenci/OgrGuncelle/@x.OgrId" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})

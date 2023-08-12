@@ -1,0 +1,52 @@
+﻿@using MvcOkul.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Kulüpler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h3>Kulüp İşlemleri</h3>
+<div style="margin:10px">
+    <a href="/Kulup/KulupEkle/" class="btn btn-info">Kulüp Ekle</a>
+</div>
+<table class="table table-bordered" id="tbl1">
+    <tr>
+        <th>Kulüp Id</th>
+        <th>Kulüp Ad</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @{ string durum = "";}
+        @foreach (var x in Model)
+        {
+            if (x.KlpDurum == true)
+            {
+                durum = "Aktif";
+            }
+            if (x.KlpDurum == false)
+            {
+                durum = "Pasif";
+            }
+            <tr>
+                <td>@x.KulupId</td>
+                <td>@x.KlpAd</td>
+                <td>@durum</td>
+                @*<td>@x.KlpKontenjan</td>*@
+                <td><a class="btn btn-outline-success" href="/Kulup/Aktifyap/@x.KulupId">Aktif Yap</a> <a class="btn btn-outline-danger" href="/Kulup/Sil/@x.KulupId">Pasif Yap</a></td>
+                <td><a class="btn btn-warning" href="/Kulup/KlpGetir/@x.KulupId">Güncelle</a></td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }),new PagedListRenderOptions
+{
+    LiElementClasses= new List<string>
+    {"page-link"}
+})
+

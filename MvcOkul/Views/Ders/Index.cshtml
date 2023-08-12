@@ -1,0 +1,47 @@
+﻿@using MvcOkul.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Dersler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h3>Ders İşlemleri</h3>
+<div style="margin:10px;">
+    <a href="/Ders/DersEkle/" class="btn btn-info">Ders Ekle</a>
+</div>
+<table class="table table-bordered">
+    <tr>
+        <th>Ders Id</th>
+        <th>Ders Ad</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @{ string durum = ""; }
+        @foreach (var x in Model)
+        {
+            if (x.Dersdurum == true)
+            {
+                durum = "Aktif";
+            }
+            if (x.Dersdurum == false)
+            {
+                durum = "Pasif";
+            }
+            <tr>
+                <td>@x.DersId</td>
+                <td>@x.DersAd</td>
+                <td>@durum</td>
+                <td><a href="/Ders/Aktifyap/@x.DersId" class="btn btn-outline-success">Aktif Yap</a> <a href="/Ders/DersSil/@x.DersId" class="btn btn-outline-danger">Pasif Yap</a></td>
+                <td><a href="/Ders/DersGetir/@x.DersId" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})

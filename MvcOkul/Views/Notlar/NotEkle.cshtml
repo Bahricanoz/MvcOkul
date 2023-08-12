@@ -1,0 +1,45 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Notlar
+@{
+    ViewBag.Title = "NotEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Öğrenci Numara</label>
+        @*<input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="OgrId" />*@
+        @Html.DropDownListFor(m => m.OgrId, (List<SelectListItem>)ViewBag.ogr, new { @class = "form-control" })
+        <br />
+    </div>
+    <div>
+        <label>Ders Ad</label>
+        @*<input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="DersId" />*@
+        @Html.DropDownListFor(m => m.DersId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        <br />
+    </div>
+    <div>
+        <label>Sınav 1</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="Sınav1" required/>
+        <br />
+    </div>
+    <div>
+        <label>Sınav 2</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="Sınav2" required />
+
+        <br />
+    </div>
+    <div>
+        <label>Sınav 3</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="Sınav3" required/>
+        <br />
+    </div>
+    <div>
+        <label>Proje</label>
+        <input type="text" class="form-control" placeholder="Lütfen Bu Alanı Boş Bırakmayınız.." name="Proje" required/>
+        <br />
+    </div>
+    <div>
+        <button class="btn btn-info" name="islem" type="submit" value="NotHesapla">Sınav Ekle</button>
+    </div>
+</form>
+

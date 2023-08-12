@@ -1,0 +1,61 @@
+﻿@using MvcOkul.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Notlar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Sınav Notu İşlemleri</h2>
+<div style="margin:10px;">
+    <a href="/Notlar/NotEkle/" class="btn btn-info">Yeni Sınav Notu Ekleme</a>
+</div>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Öğrenci Adı</th>
+        <th>Öğrenci Soyadı</th>
+        <th>Ders Adı</th>
+        <th>Sınav 1 </th>
+        <th>Sınav 2 </th>
+        <th>Sınav 3 </th>
+        <th>Proje </th>
+        <th>Ortalama</th>
+        <th>Durum</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @{ string durum = "";}
+        @foreach (var x in Model)
+        {
+            if (x.Durum == true)
+            {
+                durum = "Geçti";
+            }
+            if (x.Durum == false)
+            {
+                durum = "Kaldı";
+            }
+            <tr>
+                <td>@x.NotId</td>
+                <td>@x.Tbl_Ogrenciler.OgrAd</td>
+                <td>@x.Tbl_Ogrenciler.OgrSoyad</td>
+                <td>@x.Tbl_Dersler.DersAd</td>
+                <td>@x.Sınav1</td>
+                <td>@x.Sınav2</td>
+                <td>@x.Sınav3</td>
+                <td>@x.Proje</td>
+                <td>@x.Ortalama</td>
+                <td>@durum</td>
+                <td><a href="/Notlar/Notguncelle/@x.NotId" class="btn btn-success">Güncelle</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+})

@@ -1,0 +1,26 @@
+﻿@model MvcOkul.Models.Entity.Tbl_Kulüpler
+@{
+    ViewBag.Title = "KlpGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h3>Kulüp Güncelleme Sayafası</h3>
+
+@using (Html.BeginForm("Guncelle", "Kulup", FormMethod.Post))
+{
+    <div class="form-group">
+        <div>
+            <label>Kulüp Id</label>
+            @Html.TextBoxFor(m => m.KulupId, new { @class = "form-control",@readonly="readonly" })
+        </div>
+        <div style="margin-top:5px">
+            <label>Kulüp Ad</label>
+            @Html.TextBoxFor(m => m.KlpAd, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.KlpAd, "", new { @style = "color:blue;"})
+        </div>
+        @Html.HiddenFor(m => m.KulupId)
+        <div style="margin-top:10px;">
+            <button class="btn btn-primary">Kulüp Güncelle</button>
+        </div>
+    </div>
+}
+
