@@ -9,7 +9,7 @@ Bu proje , MVC5 kullanarak Entity Framework yapısı kullanarak kodlanmıştır.
 Proje Aşamaları:
 ----------------------------------
 - MVC5 kullanarak web uygulamalarının geliştirilmesi 
-- Entity Framework Core ile veritabanı işlemleri
+- Entity Framework Dbfirst ile veritabanı işlemleri
 - Temel Listemele, Güncelleme işlemleri
 - Dropdownliste veri tabanından verilerin çekilmesi
 - Silme işlemi yerine Aktif/Pasif işlemleri
