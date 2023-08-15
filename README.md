@@ -10,7 +10,7 @@ Proje Aşamaları:
 ----------------------------------
 - MVC5 kullanarak web uygulamalarının geliştirilmesi 
 - Entity Framework Dbfirst ile veritabanı işlemleri
-- Temel Listemele, Güncelleme işlemleri
+- Temel Listemele, Güncelleme,Ekleme işlemleri
 - Dropdownliste veri tabanından verilerin çekilmesi
 - Silme işlemi yerine Aktif/Pasif işlemleri
 - Regular Expression işlemleri
